@@ -1,21 +1,22 @@
 import { Elysia } from 'elysia'
-import { initI18n, isValidLanguage, defaultLanguage, type SupportedLanguage } from '../lib/i18n'
-import { extractLanguageFromPath } from '../lib/path'
+import { isValidLanguage, type SupportedLanguage } from '../lib/i18n'
+import { createTranslator } from '../lib/translate'
 
 export const i18nPlugin = new Elysia({ name: 'i18n' })
-  .onStart(async () => {
-    await initI18n()
-  })
   .derive(({ request }) => {
     const url = new URL(request.url)
-    const { lang, cleanPath } = extractLanguageFromPath(url.pathname)
-    
+    const pathSegments = url.pathname.split('/').filter(Boolean)
+
+    // Default to English
+    let lang: SupportedLanguage = 'en'
+
+    // Check if first segment is a language code
+    if (pathSegments.length > 0 && isValidLanguage(pathSegments[0])) {
+      lang = pathSegments[0] as SupportedLanguage
+    }
+
     return {
       lang,
-      cleanPath,
-      t: (key: string, options?: any) => {
-        const i18n = require('i18next').default
-        return i18n.getFixedT(lang)(key, options)
-      }
+      t: createTranslator(lang)
     }
   })

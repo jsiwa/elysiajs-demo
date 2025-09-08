@@ -15,7 +15,13 @@ export function HomePage({ lang, t }: HomePageProps): string {
     keywords: t('home.keywords')
   }, lang)
 
-  const productsLink = getLocalizedPath('/products', lang)
+  // Generate correct products link based on language
+  let productsLink = '/products'
+  if (lang === 'ja') {
+    productsLink = '/ja/products'
+  } else if (lang === 'zh') {
+    productsLink = '/zh/products'
+  }
 
   const content = `
     <div class="text-center">
@@ -36,10 +42,10 @@ export function HomePage({ lang, t }: HomePageProps): string {
     </div>
   `
 
-  return MainLayout({ 
-    children: content, 
-    title: t('home.title'), 
-    lang, 
-    seoTags 
+  return MainLayout({
+    children: content,
+    title: t('home.title'),
+    lang,
+    seoTags
   })
 }

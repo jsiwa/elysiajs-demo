@@ -6,8 +6,17 @@ interface HeaderProps {
 }
 
 export function Header({ lang }: HeaderProps): string {
-  const homeLink = getLocalizedPath('/', lang)
-  const productsLink = getLocalizedPath('/products', lang)
+  // Generate correct navigation links based on language
+  let homeLink = '/'
+  let productsLink = '/products'
+  
+  if (lang === 'ja') {
+    homeLink = '/ja'
+    productsLink = '/ja/products'
+  } else if (lang === 'zh') {
+    homeLink = '/zh'
+    productsLink = '/zh/products'
+  }
   
   const languageSwitcher = LanguageSwitcher({ currentLang: lang })
   
@@ -51,8 +60,13 @@ function LanguageSwitcher({ currentLang }: { currentLang: SupportedLanguage }): 
       ? 'px-2 py-1 text-sm rounded bg-blue-100 text-blue-800'
       : 'px-2 py-1 text-sm rounded text-gray-600 hover:text-gray-900'
     
+    // Generate correct links for each language
+    let href = '/'
+    if (code === 'ja') href = '/ja'
+    if (code === 'zh') href = '/zh'
+    
     return `
-      <a href="/${code === 'en' ? '' : code}" class="${className}">
+      <a href="${href}" class="${className}">
         ${name}
       </a>
     `
