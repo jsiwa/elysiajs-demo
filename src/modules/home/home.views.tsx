@@ -7,9 +7,10 @@ interface HomePageProps {
   lang: SupportedLanguage
   t: (key: string) => string
   user?: User | null
+  currentPath?: string
 }
 
-export function HomePage({ lang, t, user }: HomePageProps): string {
+export function HomePage({ lang, t, user, currentPath }: HomePageProps): string {
   const seoTags = generateSEOTags({
     title: t('home.title'),
     description: t('home.description'),
@@ -192,6 +193,6 @@ export function HomePage({ lang, t, user }: HomePageProps): string {
     seoTags,
     user,
     t,
-    currentPath: lang === 'en' ? '/' : `/${lang}`
+    currentPath: currentPath || (lang === 'en' ? '/' : `/${lang}`)
   })
 }

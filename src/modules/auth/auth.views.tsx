@@ -6,13 +6,14 @@ import type { User } from '../../lib/auth'
 interface AuthPageProps {
   lang: SupportedLanguage
   t: (key: string) => string
+  currentPath?: string
 }
 
 interface ProfilePageProps extends AuthPageProps {
   user: User
 }
 
-export function LoginPage({ lang, t }: AuthPageProps): string {
+export function LoginPage({ lang, t, currentPath }: AuthPageProps): string {
   const seoTags = generateSEOTags({
     title: t('auth.login.title'),
     description: t('auth.login.description'),
@@ -252,11 +253,12 @@ export function LoginPage({ lang, t }: AuthPageProps): string {
     title: t('auth.login.title'),
     lang,
     seoTags,
-    t
+    t,
+    currentPath: currentPath || (lang === 'en' ? '/login' : `/${lang}/login`)
   })
 }
 
-export function RegisterPage({ lang, t }: AuthPageProps): string {
+export function RegisterPage({ lang, t, currentPath }: AuthPageProps): string {
   const seoTags = generateSEOTags({
     title: t('auth.register.title'),
     description: t('auth.register.description'),
@@ -695,11 +697,12 @@ export function RegisterPage({ lang, t }: AuthPageProps): string {
     title: t('auth.register.title'),
     lang,
     seoTags,
-    t
+    t,
+    currentPath: currentPath || (lang === 'en' ? '/register' : `/${lang}/register`)
   })
 }
 
-export function ProfilePage({ lang, t, user }: ProfilePageProps): string {
+export function ProfilePage({ lang, t, user, currentPath }: ProfilePageProps): string {
   const seoTags = generateSEOTags({
     title: t('auth.profile.title'),
     description: t('auth.profile.description'),

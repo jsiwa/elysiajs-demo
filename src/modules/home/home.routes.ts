@@ -3,18 +3,21 @@ import { HomePage } from './home.views'
 import { createTranslator } from '../../lib/translate'
 
 export const homeRoutes = new Elysia({ prefix: '' })
-  .get('/', () => {
+  .get('/', ({ request }) => {
     const lang = 'en'
     const t = createTranslator(lang)
-    return HomePage({ lang, t })
+    const currentPath = new URL(request.url).pathname
+    return HomePage({ lang, t, currentPath })
   })
-  .get('/ja', () => {
+  .get('/ja', ({ request }) => {
     const lang = 'ja'
     const t = createTranslator(lang)
-    return HomePage({ lang, t })
+    const currentPath = new URL(request.url).pathname
+    return HomePage({ lang, t, currentPath })
   })
-  .get('/zh', () => {
+  .get('/zh', ({ request }) => {
     const lang = 'zh'
     const t = createTranslator(lang)
-    return HomePage({ lang, t })
+    const currentPath = new URL(request.url).pathname
+    return HomePage({ lang, t, currentPath })
   })

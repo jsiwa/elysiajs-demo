@@ -5,6 +5,7 @@ import type { SupportedLanguage } from '../../lib/i18n'
 interface ProductsPageProps {
   lang: SupportedLanguage
   t: (key: string) => string
+  currentPath?: string
 }
 
 interface Product {
@@ -81,7 +82,7 @@ const mockProducts: Product[] = [
   }
 ]
 
-export function ProductsPage({ lang, t }: ProductsPageProps): string {
+export function ProductsPage({ lang, t, currentPath }: ProductsPageProps): string {
   const seoTags = generateSEOTags({
     title: t('products.title'),
     description: t('products.description'),
@@ -242,6 +243,6 @@ export function ProductsPage({ lang, t }: ProductsPageProps): string {
     lang, 
     seoTags,
     t,
-    currentPath: lang === 'en' ? '/products' : `/${lang}/products`
+    currentPath: currentPath || (lang === 'en' ? '/products' : `/${lang}/products`)
   })
 }

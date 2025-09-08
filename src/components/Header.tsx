@@ -30,16 +30,29 @@ export function Header({ lang, user, t, currentPath = '' }: HeaderProps): string
     profileLink = '/zh/profile'
   }
 
-  // Language switching links
-  const currentPathWithoutLang = currentPath.replace(/^\/(ja|zh)/, '') || '/'
-  const enLink = currentPathWithoutLang === '/' ? '/' : currentPathWithoutLang
-  const jaLink = currentPathWithoutLang === '/' ? '/ja' : `/ja${currentPathWithoutLang}`
-  const zhLink = currentPathWithoutLang === '/' ? '/zh' : `/zh${currentPathWithoutLang}`
-
+  // Language switching links - preserve current path
+  function generateLanguageLinks(currentPath: string) {
+    // Remove language prefix from current path
+    const pathWithoutLang = currentPath.replace(/^\/(ja|zh)/, '') || '/'
+    
+    // Generate links for each language
+    const enLink = pathWithoutLang === '/' ? '/' : pathWithoutLang
+    const jaLink = pathWithoutLang === '/' ? '/ja' : `/ja${pathWithoutLang}`
+    const zhLink = pathWithoutLang === '/' ? '/zh' : `/zh${pathWithoutLang}`
+    
+    return {
+      en: enLink,
+      ja: jaLink,
+      zh: zhLink
+    }
+  }
+  
+  const languageLinks = generateLanguageLinks(currentPath)
+  
   const languages = [
-    { code: 'en', name: 'English', flag: '🇺🇸', link: enLink },
-    { code: 'ja', name: '日本語', flag: '🇯🇵', link: jaLink },
-    { code: 'zh', name: '中文', flag: '🇨🇳', link: zhLink }
+    { code: 'en', name: 'English', flag: '🇺🇸', link: languageLinks.en },
+    { code: 'ja', name: '日本語', flag: '🇯🇵', link: languageLinks.ja },
+    { code: 'zh', name: '中文', flag: '🇨🇳', link: languageLinks.zh }
   ]
   
   return `
