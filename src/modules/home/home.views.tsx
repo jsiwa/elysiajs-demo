@@ -1,6 +1,5 @@
 import { MainLayout } from '../../layouts/MainLayout'
 import { generateSEOTags } from '../../lib/seo'
-import { getLocalizedPath } from '../../lib/path'
 import type { SupportedLanguage } from '../../lib/i18n'
 
 interface HomePageProps {
@@ -12,7 +11,9 @@ export function HomePage({ lang, t }: HomePageProps): string {
   const seoTags = generateSEOTags({
     title: t('home.title'),
     description: t('home.description'),
-    keywords: t('home.keywords')
+    keywords: t('home.keywords'),
+    ogTitle: t('home.title'),
+    ogDescription: t('home.description')
   }, lang)
 
   // Generate correct products link based on language

@@ -1,6 +1,5 @@
 import { MainLayout } from '../../layouts/MainLayout'
 import { generateSEOTags } from '../../lib/seo'
-import { getLocalizedPath } from '../../lib/path'
 import type { SupportedLanguage } from '../../lib/i18n'
 
 interface ProductsPageProps {
@@ -25,7 +24,9 @@ export function ProductsPage({ lang, t }: ProductsPageProps): string {
   const seoTags = generateSEOTags({
     title: t('products.title'),
     description: t('products.description'),
-    keywords: t('products.keywords')
+    keywords: t('products.keywords'),
+    ogTitle: t('products.title'),
+    ogDescription: t('products.description')
   }, lang)
 
   const productsHtml = mockProducts.map((product) => `
@@ -34,7 +35,7 @@ export function ProductsPage({ lang, t }: ProductsPageProps): string {
       <p class="text-gray-600 mb-4">${product.description}</p>
       <div class="flex justify-between items-center">
         <span class="text-2xl font-bold text-blue-600">
-          $${product.price}
+          $${product.price.toFixed(2)}
         </span>
         <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
           ${t('products.addToCart')}
