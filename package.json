@@ -1,0 +1,29 @@
+{
+  "name": "elysia-fullstack-app",
+  "version": "1.0.0",
+  "description": "Elysia fullstack application with i18n support",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "build": "bun build src/index.ts --outdir ./dist",
+    "start": "bun run dist/index.js",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "elysia": "^0.8.17",
+    "@elysiajs/html": "^0.8.0",
+    "@elysiajs/static": "^0.8.0",
+    "@elysiajs/cookie": "^0.8.0",
+    "@elysiajs/jwt": "^0.8.0",
+    "better-auth": "^0.5.0",
+    "i18next": "^23.7.6",
+    "i18next-fs-backend": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.0.0",
+    "typescript": "^5.3.3"
+  },
+  "keywords": ["elysia", "fullstack", "i18n", "typescript"],
+  "author": "",
+  "license": "MIT"
+}

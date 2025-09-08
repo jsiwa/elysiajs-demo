@@ -1,0 +1,31 @@
+{
+  "home": {
+    "title": "欢迎使用 Elysia 应用",
+    "description": "使用 Elysia 和 TypeScript 构建的现代全栈应用程序",
+    "keywords": "elysia, typescript, 全栈, 网络应用",
+    "welcome": "欢迎使用 Elysia 应用",
+    "subtitle": "这是一个使用 Elysia 构建的现代全栈应用程序，具有国际化、身份验证等功能。",
+    "viewProducts": "查看产品"
+  },
+  "products": {
+    "title": "产品",
+    "description": "浏览我们精彩的产品系列",
+    "keywords": "产品, 商店, 电子商务",
+    "addToCart": "添加到购物车"
+  },
+  "navigation": {
+    "home": "首页",
+    "products": "产品",
+    "about": "关于我们",
+    "contact": "联系我们"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "发生错误",
+    "retry": "重试",
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑"
+  }
+}

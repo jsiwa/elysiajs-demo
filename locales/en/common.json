@@ -1,0 +1,31 @@
+{
+  "home": {
+    "title": "Welcome to Elysia App",
+    "description": "A modern fullstack application built with Elysia and TypeScript",
+    "keywords": "elysia, typescript, fullstack, web app",
+    "welcome": "Welcome to Elysia App",
+    "subtitle": "A modern fullstack application built with Elysia, featuring internationalization, authentication, and more.",
+    "viewProducts": "View Products"
+  },
+  "products": {
+    "title": "Products",
+    "description": "Browse our amazing collection of products",
+    "keywords": "products, shop, ecommerce",
+    "addToCart": "Add to Cart"
+  },
+  "navigation": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit"
+  }
+}
