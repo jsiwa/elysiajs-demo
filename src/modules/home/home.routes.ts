@@ -3,7 +3,9 @@ import { HomePage } from './home.views'
 import { createTranslator } from '../../lib/translate'
 
 export const homeRoutes = new Elysia({ prefix: '' })
-  .get('/', ({ lang, t }) => {
+  .get('/', () => {
+    const lang = 'en'
+    const t = createTranslator(lang)
     return HomePage({ lang, t })
   })
   .get('/ja', () => {

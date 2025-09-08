@@ -3,21 +3,144 @@
     "title": "Elysiaアプリへようこそ",
     "description": "ElysiaとTypeScriptで構築されたモダンなフルスタックアプリケーション",
     "keywords": "elysia, typescript, フルスタック, ウェブアプリ",
-    "welcome": "Elysiaアプリへようこそ",
+    "welcome": "Elysiaへようこそ",
     "subtitle": "国際化、認証などの機能を備えた、Elysiaで構築されたモダンなフルスタックアプリケーションです。",
-    "viewProducts": "商品を見る"
+    "viewProducts": "商品を見る",
+    "getStarted": "始める",
+    "features": {
+      "title": "なぜElysiaを選ぶのか？",
+      "subtitle": "最適なパフォーマンスと開発者体験のために、モダンな技術とベストプラクティスで構築されています。",
+      "fast": {
+        "title": "超高速",
+        "description": "Bunランタイム上で構築され、卓越したパフォーマンスと速度を実現。"
+      },
+      "secure": {
+        "title": "デフォルトで安全",
+        "description": "認証と認可が組み込まれたエンタープライズグレードのセキュリティ。"
+      },
+      "global": {
+        "title": "グローバル対応",
+        "description": "複数の言語と地域をサポートする完全な国際化対応。"
+      }
+    },
+    "stats": {
+      "users": "アクティブユーザー",
+      "uptime": "稼働率",
+      "countries": "対応国",
+      "support": "サポート"
+    },
+    "cta": {
+      "title": "始める準備はできましたか？",
+      "subtitle": "Elysiaで素晴らしいアプリケーションを構築している何千人もの開発者に参加しましょう。",
+      "getStarted": "無料で始める",
+      "signIn": "サインイン"
+    }
   },
   "products": {
     "title": "商品",
+    "subtitle": "モダンライフのためにデザインされたプレミアム商品の厳選コレクションをご覧ください。",
     "description": "素晴らしい商品コレクションをご覧ください",
     "keywords": "商品, ショップ, eコマース",
-    "addToCart": "カートに追加"
+    "addToCart": "カートに追加",
+    "added": "追加完了！",
+    "reviews": "レビュー",
+    "allCategories": "全カテゴリー",
+    "loadMore": "もっと見る"
   },
   "navigation": {
     "home": "ホーム",
     "products": "商品",
     "about": "会社概要",
-    "contact": "お問い合わせ"
+    "contact": "お問い合わせ",
+    "login": "ログイン",
+    "register": "登録",
+    "profile": "プロフィール",
+    "logout": "ログアウト"
+  },
+  "auth": {
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "name": "名前",
+    "confirmPassword": "パスワード確認",
+    "emailPlaceholder": "メールアドレスを入力",
+    "passwordPlaceholder": "パスワードを入力",
+    "namePlaceholder": "名前を入力",
+    "confirmPasswordPlaceholder": "パスワードを再入力",
+    "loginWithGithub": "GitHubでログイン",
+    "registerWithGithub": "GitHubで登録",
+    "rememberMe": "ログイン状態を保持",
+    "forgotPassword": "パスワードをお忘れですか？",
+    "orContinueWith": "または次の方法で続行",
+    "signingIn": "ログイン中...",
+    "creatingAccount": "アカウント作成中...",
+    "fillAllFields": "すべての項目を入力してください",
+    "loginSuccess": "ログイン成功！リダイレクト中...",
+    "registerSuccess": "登録成功！リダイレクト中...",
+    "githubRedirect": "GitHubにリダイレクト中...",
+    "passwordStrength": "パスワード強度",
+    "passwordWeak": "弱い",
+    "passwordMedium": "普通",
+    "passwordGood": "良い",
+    "passwordStrong": "強い",
+    "passwordMismatch": "パスワードが一致しません",
+    "nameRequired": "名前は2文字以上で入力してください",
+    "emailInvalid": "有効なメールアドレスを入力してください",
+    "passwordTooShort": "パスワードは8文字以上で入力してください",
+    "agreeToTerms": "同意します",
+    "termsOfService": "利用規約",
+    "and": "と",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsRequired": "利用規約とプライバシーポリシーに同意する必要があります",
+    "logout": "ログアウト",
+    "loginFailed": "ログインに失敗しました。認証情報を確認してください。",
+    "loginError": "ログイン中にエラーが発生しました。",
+    "registerFailed": "登録に失敗しました。もう一度お試しください。",
+    "registerError": "登録中にエラーが発生しました。",
+    "logoutError": "ログアウト中にエラーが発生しました。",
+    "login": {
+      "title": "おかえりなさい",
+      "subtitle": "アカウントにサインインして続行",
+      "description": "アカウントにログイン",
+      "keywords": "ログイン, サインイン, 認証",
+      "submit": "サインイン",
+      "noAccount": "アカウントをお持ちでない方は"
+    },
+    "register": {
+      "title": "アカウント作成",
+      "subtitle": "今すぐ参加して始めましょう",
+      "description": "新しいアカウントを作成",
+      "keywords": "登録, サインアップ, アカウント作成",
+      "submit": "アカウント作成",
+      "hasAccount": "既にアカウントをお持ちの方は"
+    },
+    "profile": {
+      "title": "プロフィール",
+      "description": "プロフィール情報",
+      "keywords": "プロフィール, アカウント, ユーザー",
+      "noName": "名前が設定されていません",
+      "role": "役割",
+      "joinedAt": "登録日"
+    }
+  },
+  "footer": {
+    "description": "国際化、認証などの機能を備えた、Elysiaで構築されたモダンなフルスタックアプリケーション。開発者による、開発者のためのアプリケーションです。",
+    "quickLinks": "クイックリンク",
+    "support": "サポート",
+    "helpCenter": "ヘルプセンター",
+    "documentation": "ドキュメント",
+    "community": "コミュニティ",
+    "status": "ステータス",
+    "newsletter": {
+      "title": "最新情報を受け取る",
+      "description": "最新のアップデートやニュースをメールでお届けします。",
+      "placeholder": "メールアドレスを入力",
+      "subscribe": "購読",
+      "success": "ご登録ありがとうございます！"
+    },
+    "copyright": "全著作権所有。",
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約",
+    "cookies": "クッキーポリシー"
   },
   "common": {
     "loading": "読み込み中...",

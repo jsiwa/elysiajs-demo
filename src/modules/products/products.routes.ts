@@ -3,7 +3,9 @@ import { ProductsPage } from './products.views'
 import { createTranslator } from '../../lib/translate'
 
 export const productsRoutes = new Elysia({ prefix: '' })
-  .get('/products', ({ lang, t }) => {
+  .get('/products', () => {
+    const lang = 'en'
+    const t = createTranslator(lang)
     return ProductsPage({ lang, t })
   })
   .get('/ja/products', () => {

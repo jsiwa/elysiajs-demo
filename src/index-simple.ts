@@ -7,7 +7,6 @@ import { cors } from '@elysiajs/cors'
 import { i18nPlugin } from './plugins/i18n'
 import { homeRoutes } from './modules/home/home.routes'
 import { productsRoutes } from './modules/products/products.routes'
-import { authRoutes } from './modules/auth/auth.routes'
 
 const app = new Elysia()
   .use(html())
@@ -30,22 +29,8 @@ const app = new Elysia()
   .use(i18nPlugin)
   .use(homeRoutes)
   .use(productsRoutes)
-  .use(authRoutes)
-  // Test route
-  .get('/test', () => 'Test route works!')
   .listen(3000)
 
 console.log(`🦊 Elysia is running at http://localhost:3000`)
-console.log('📍 Available routes:')
-console.log('  - / (Home)')
-console.log('  - /ja (Home Japanese)')
-console.log('  - /zh (Home Chinese)')
-console.log('  - /products (Products)')
-console.log('  - /ja/products (Products Japanese)')
-console.log('  - /zh/products (Products Chinese)')
-console.log('  - /login (Login)')
-console.log('  - /register (Register)')
-console.log('  - /profile (Profile)')
-console.log('  - /test (Test route)')
 
 export type App = typeof app

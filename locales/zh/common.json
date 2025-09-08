@@ -3,21 +3,144 @@
     "title": "欢迎使用 Elysia 应用",
     "description": "使用 Elysia 和 TypeScript 构建的现代全栈应用程序",
     "keywords": "elysia, typescript, 全栈, 网络应用",
-    "welcome": "欢迎使用 Elysia 应用",
+    "welcome": "欢迎使用 Elysia",
     "subtitle": "这是一个使用 Elysia 构建的现代全栈应用程序，具有国际化、身份验证等功能。",
-    "viewProducts": "查看产品"
+    "viewProducts": "查看产品",
+    "getStarted": "开始使用",
+    "features": {
+      "title": "为什么选择 Elysia？",
+      "subtitle": "采用现代技术和最佳实践构建，提供最佳性能和开发者体验。",
+      "fast": {
+        "title": "闪电般快速",
+        "description": "基于 Bun 运行时构建，提供卓越的性能和速度。"
+      },
+      "secure": {
+        "title": "默认安全",
+        "description": "企业级安全性，内置身份验证和授权功能。"
+      },
+      "global": {
+        "title": "全球化就绪",
+        "description": "完整的国际化支持，支持多种语言和地区。"
+      }
+    },
+    "stats": {
+      "users": "活跃用户",
+      "uptime": "正常运行时间",
+      "countries": "支持国家",
+      "support": "支持"
+    },
+    "cta": {
+      "title": "准备开始了吗？",
+      "subtitle": "加入成千上万使用 Elysia 构建出色应用程序的开发者。",
+      "getStarted": "免费开始",
+      "signIn": "登录"
+    }
   },
   "products": {
     "title": "产品",
+    "subtitle": "探索我们为现代生活精心策划的优质产品系列。",
     "description": "浏览我们精彩的产品系列",
     "keywords": "产品, 商店, 电子商务",
-    "addToCart": "添加到购物车"
+    "addToCart": "添加到购物车",
+    "added": "已添加！",
+    "reviews": "评价",
+    "allCategories": "所有分类",
+    "loadMore": "加载更多产品"
   },
   "navigation": {
     "home": "首页",
     "products": "产品",
     "about": "关于我们",
-    "contact": "联系我们"
+    "contact": "联系我们",
+    "login": "登录",
+    "register": "注册",
+    "profile": "个人资料",
+    "logout": "退出"
+  },
+  "auth": {
+    "email": "邮箱",
+    "password": "密码",
+    "name": "姓名",
+    "confirmPassword": "确认密码",
+    "emailPlaceholder": "请输入邮箱",
+    "passwordPlaceholder": "请输入密码",
+    "namePlaceholder": "请输入姓名",
+    "confirmPasswordPlaceholder": "请再次输入密码",
+    "loginWithGithub": "使用 GitHub 登录",
+    "registerWithGithub": "使用 GitHub 注册",
+    "rememberMe": "记住我",
+    "forgotPassword": "忘记密码？",
+    "orContinueWith": "或者使用以下方式继续",
+    "signingIn": "登录中...",
+    "creatingAccount": "创建账户中...",
+    "fillAllFields": "请填写所有字段",
+    "loginSuccess": "登录成功！正在跳转...",
+    "registerSuccess": "注册成功！正在跳转...",
+    "githubRedirect": "正在跳转到 GitHub...",
+    "passwordStrength": "密码强度",
+    "passwordWeak": "弱",
+    "passwordMedium": "中等",
+    "passwordGood": "良好",
+    "passwordStrong": "强",
+    "passwordMismatch": "密码不匹配",
+    "nameRequired": "姓名至少需要2个字符",
+    "emailInvalid": "请输入有效的邮箱地址",
+    "passwordTooShort": "密码至少需要8个字符",
+    "agreeToTerms": "我同意",
+    "termsOfService": "服务条款",
+    "and": "和",
+    "privacyPolicy": "隐私政策",
+    "termsRequired": "您必须同意服务条款和隐私政策",
+    "logout": "退出",
+    "loginFailed": "登录失败，请检查您的凭据。",
+    "loginError": "登录时发生错误。",
+    "registerFailed": "注册失败，请重试。",
+    "registerError": "注册时发生错误。",
+    "logoutError": "退出时发生错误。",
+    "login": {
+      "title": "欢迎回来",
+      "subtitle": "登录您的账户以继续",
+      "description": "登录您的账户",
+      "keywords": "登录, 登入, 认证",
+      "submit": "登录",
+      "noAccount": "还没有账户？"
+    },
+    "register": {
+      "title": "创建账户",
+      "subtitle": "立即加入我们开始使用",
+      "description": "创建新账户",
+      "keywords": "注册, 注册账户, 创建账户",
+      "submit": "创建账户",
+      "hasAccount": "已有账户？"
+    },
+    "profile": {
+      "title": "个人资料",
+      "description": "您的个人资料信息",
+      "keywords": "个人资料, 账户, 用户",
+      "noName": "未提供姓名",
+      "role": "角色",
+      "joinedAt": "加入时间"
+    }
+  },
+  "footer": {
+    "description": "使用 Elysia 构建的现代全栈应用程序，具有国际化、身份验证等功能。由开发者为开发者构建。",
+    "quickLinks": "快速链接",
+    "support": "支持",
+    "helpCenter": "帮助中心",
+    "documentation": "文档",
+    "community": "社区",
+    "status": "状态",
+    "newsletter": {
+      "title": "保持更新",
+      "description": "获取最新更新和新闻，直接发送到您的邮箱。",
+      "placeholder": "输入您的邮箱",
+      "subscribe": "订阅",
+      "success": "感谢您的订阅！"
+    },
+    "copyright": "版权所有。",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "cookies": "Cookie 政策"
   },
   "common": {
     "loading": "加载中...",

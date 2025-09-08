@@ -3,21 +3,144 @@
     "title": "Welcome to Elysia App",
     "description": "A modern fullstack application built with Elysia and TypeScript",
     "keywords": "elysia, typescript, fullstack, web app",
-    "welcome": "Welcome to Elysia App",
+    "welcome": "Welcome to Elysia",
     "subtitle": "A modern fullstack application built with Elysia, featuring internationalization, authentication, and more.",
-    "viewProducts": "View Products"
+    "viewProducts": "View Products",
+    "getStarted": "Get Started",
+    "features": {
+      "title": "Why Choose Elysia?",
+      "subtitle": "Built with modern technologies and best practices for optimal performance and developer experience.",
+      "fast": {
+        "title": "Lightning Fast",
+        "description": "Built on Bun runtime for exceptional performance and speed."
+      },
+      "secure": {
+        "title": "Secure by Default",
+        "description": "Enterprise-grade security with built-in authentication and authorization."
+      },
+      "global": {
+        "title": "Global Ready",
+        "description": "Full internationalization support with multiple languages and regions."
+      }
+    },
+    "stats": {
+      "users": "Active Users",
+      "uptime": "Uptime",
+      "countries": "Countries",
+      "support": "Support"
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Join thousands of developers building amazing applications with Elysia.",
+      "getStarted": "Get Started Free",
+      "signIn": "Sign In"
+    }
   },
   "products": {
     "title": "Products",
+    "subtitle": "Discover our curated collection of premium products designed for modern life.",
     "description": "Browse our amazing collection of products",
     "keywords": "products, shop, ecommerce",
-    "addToCart": "Add to Cart"
+    "addToCart": "Add to Cart",
+    "added": "Added!",
+    "reviews": "reviews",
+    "allCategories": "All Categories",
+    "loadMore": "Load More Products"
   },
   "navigation": {
     "home": "Home",
     "products": "Products",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "confirmPassword": "Confirm Password",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "namePlaceholder": "Enter your name",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "loginWithGithub": "Login with GitHub",
+    "registerWithGithub": "Register with GitHub",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot your password?",
+    "orContinueWith": "Or continue with",
+    "signingIn": "Signing in...",
+    "creatingAccount": "Creating account...",
+    "fillAllFields": "Please fill in all fields",
+    "loginSuccess": "Login successful! Redirecting...",
+    "registerSuccess": "Registration successful! Redirecting...",
+    "githubRedirect": "Redirecting to GitHub...",
+    "passwordStrength": "Password strength",
+    "passwordWeak": "Weak",
+    "passwordMedium": "Medium", 
+    "passwordGood": "Good",
+    "passwordStrong": "Strong",
+    "passwordMismatch": "Passwords do not match",
+    "nameRequired": "Name must be at least 2 characters",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordTooShort": "Password must be at least 8 characters",
+    "agreeToTerms": "I agree to the",
+    "termsOfService": "Terms of Service",
+    "and": "and",
+    "privacyPolicy": "Privacy Policy",
+    "termsRequired": "You must agree to the terms and conditions",
+    "logout": "Logout",
+    "loginFailed": "Login failed. Please check your credentials.",
+    "loginError": "An error occurred during login.",
+    "registerFailed": "Registration failed. Please try again.",
+    "registerError": "An error occurred during registration.",
+    "logoutError": "An error occurred during logout.",
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to your account to continue",
+      "description": "Login to your account",
+      "keywords": "login, signin, authentication",
+      "submit": "Sign In",
+      "noAccount": "Don't have an account?"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Join us today and get started",
+      "description": "Create a new account",
+      "keywords": "register, signup, create account",
+      "submit": "Create Account",
+      "hasAccount": "Already have an account?"
+    },
+    "profile": {
+      "title": "Profile",
+      "description": "Your profile information",
+      "keywords": "profile, account, user",
+      "noName": "No name provided",
+      "role": "Role",
+      "joinedAt": "Joined"
+    }
+  },
+  "footer": {
+    "description": "A modern fullstack application built with Elysia, featuring internationalization, authentication, and more. Built for developers, by developers.",
+    "quickLinks": "Quick Links",
+    "support": "Support",
+    "helpCenter": "Help Center",
+    "documentation": "Documentation",
+    "community": "Community",
+    "status": "Status",
+    "newsletter": {
+      "title": "Stay Updated",
+      "description": "Get the latest updates and news delivered to your inbox.",
+      "placeholder": "Enter your email",
+      "subscribe": "Subscribe",
+      "success": "Thank you for subscribing!"
+    },
+    "copyright": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy"
   },
   "common": {
     "loading": "Loading...",
