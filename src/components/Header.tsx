@@ -12,6 +12,7 @@ export function Header({ lang, user, t, currentPath = '' }: HeaderProps): string
   // Generate correct navigation links based on language
   let homeLink = '/'
   let productsLink = '/products'
+  let blogLink = '/blog'
   let loginLink = '/login'
   let registerLink = '/register'
   let profileLink = '/profile'
@@ -19,12 +20,14 @@ export function Header({ lang, user, t, currentPath = '' }: HeaderProps): string
   if (lang === 'ja') {
     homeLink = '/ja'
     productsLink = '/ja/products'
+    blogLink = '/ja/blog'
     loginLink = '/ja/login'
     registerLink = '/ja/register'
     profileLink = '/ja/profile'
   } else if (lang === 'zh') {
     homeLink = '/zh'
     productsLink = '/zh/products'
+    blogLink = '/zh/blog'
     loginLink = '/zh/login'
     registerLink = '/zh/register'
     profileLink = '/zh/profile'
@@ -71,12 +74,15 @@ export function Header({ lang, user, t, currentPath = '' }: HeaderProps): string
                 <span class="text-xl font-bold text-gray-900">Elysia</span>
               </a>
             </div>
-            <div class="hidden sm:ml-8 sm:flex sm:space-x-8">
+            <div class="hidden sm:ml-8 sm:flex sm:space-x-8 items-center">
               <a href="${homeLink}" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 ${currentPath === homeLink ? 'border-blue-600 text-blue-600' : 'border-transparent'}">
                 ${t ? t('navigation.home') : 'Home'}
               </a>
               <a href="${productsLink}" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 ${currentPath.includes('/products') ? 'border-blue-600 text-blue-600' : 'border-transparent'}">
                 ${t ? t('navigation.products') : 'Products'}
+              </a>
+              <a href="${blogLink}" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 ${currentPath.includes('/blog') ? 'border-blue-600 text-blue-600' : 'border-transparent'}">
+                ${t ? t('navigation.blog') : 'Blog'}
               </a>
               <a href="#" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 border-transparent">
                 ${t ? t('navigation.about') : 'About'}
@@ -168,6 +174,9 @@ export function Header({ lang, user, t, currentPath = '' }: HeaderProps): string
             </a>
             <a href="${productsLink}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 rounded-lg">
               ${t ? t('navigation.products') : 'Products'}
+            </a>
+            <a href="${blogLink}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 rounded-lg">
+              ${t ? t('navigation.blog') : 'Blog'}
             </a>
             <a href="#" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 rounded-lg">
               ${t ? t('navigation.about') : 'About'}

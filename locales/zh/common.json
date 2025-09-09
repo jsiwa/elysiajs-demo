@@ -50,6 +50,7 @@
   "navigation": {
     "home": "首页",
     "products": "产品",
+    "blog": "博客",
     "about": "关于我们",
     "contact": "联系我们",
     "login": "登录",
@@ -66,8 +67,14 @@
     "passwordPlaceholder": "请输入密码",
     "namePlaceholder": "请输入姓名",
     "confirmPasswordPlaceholder": "请再次输入密码",
+    "loginWithGoogle": "使用 Google 继续",
     "loginWithGithub": "使用 GitHub 登录",
     "registerWithGithub": "使用 GitHub 注册",
+    "googleLogin": {
+      "description": "使用您的 Google 账户安全登录"
+    },
+
+    "bySigningIn": "登录即表示您同意我们的",
     "rememberMe": "记住我",
     "forgotPassword": "忘记密码？",
     "orContinueWith": "或者使用以下方式继续",
@@ -141,6 +148,21 @@
     "privacy": "隐私政策",
     "terms": "服务条款",
     "cookies": "Cookie 政策"
+  },
+  "blog": {
+    "title": "博客",
+    "subtitle": "来自我们团队的见解、教程和更新",
+    "description": "阅读我们关于网络开发、技术和最佳实践的最新博客文章",
+    "keywords": "博客, 文章, 教程, 网络开发",
+    "minRead": "分钟阅读",
+    "readMore": "阅读更多",
+    "allCategories": "所有分类",
+    "loadMore": "加载更多文章",
+    "backToBlog": "返回博客",
+    "shareArticle": "分享这篇文章",
+    "relatedPosts": "相关文章",
+    "postNotFound": "文章未找到",
+    "postNotFoundDescription": "您要查找的博客文章不存在。"
   },
   "common": {
     "loading": "加载中...",

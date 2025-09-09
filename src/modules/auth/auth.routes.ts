@@ -1,40 +1,47 @@
 import { Elysia } from 'elysia'
-import { LoginPage, RegisterPage, ProfilePage } from './auth.views'
+import { GoogleLoginPage } from './google-auth.views'
+import { ProfilePage } from './auth.views'
 import { createTranslator } from '../../lib/translate'
 
 export const authRoutes = new Elysia({ prefix: '' })
-  // Login routes
-  .get('/login', () => {
+  // Login routes (Google only)
+  .get('/login', ({ request }) => {
     const lang = 'en'
     const t = createTranslator(lang)
-    return LoginPage({ lang, t })
+    const currentPath = new URL(request.url).pathname
+    return GoogleLoginPage({ lang, t, currentPath })
   })
-  .get('/ja/login', () => {
+  .get('/ja/login', ({ request }) => {
     const lang = 'ja'
     const t = createTranslator(lang)
-    return LoginPage({ lang, t })
+    const currentPath = new URL(request.url).pathname
+    return GoogleLoginPage({ lang, t, currentPath })
   })
-  .get('/zh/login', () => {
+  .get('/zh/login', ({ request }) => {
     const lang = 'zh'
     const t = createTranslator(lang)
-    return LoginPage({ lang, t })
+    const currentPath = new URL(request.url).pathname
+    return GoogleLoginPage({ lang, t, currentPath })
   })
   
-  // Register routes
-  .get('/register', () => {
+  // Register routes redirect to login (Google only)
+  .get('/register', ({ request }) => {
     const lang = 'en'
     const t = createTranslator(lang)
-    return RegisterPage({ lang, t })
+    const currentPath = new URL(request.url).pathname
+    return GoogleLoginPage({ lang, t, currentPath })
   })
-  .get('/ja/register', () => {
+  .get('/ja/register', ({ request }) => {
     const lang = 'ja'
     const t = createTranslator(lang)
-    return RegisterPage({ lang, t })
+    const currentPath = new URL(request.url).pathname
+    return GoogleLoginPage({ lang, t, currentPath })
   })
-  .get('/zh/register', () => {
+  .get('/zh/register', ({ request }) => {
     const lang = 'zh'
     const t = createTranslator(lang)
-    return RegisterPage({ lang, t })
+    const currentPath = new URL(request.url).pathname
+    return GoogleLoginPage({ lang, t, currentPath })
   })
   
   // Profile routes (mock protected)

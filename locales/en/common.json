@@ -50,6 +50,7 @@
   "navigation": {
     "home": "Home",
     "products": "Products",
+    "blog": "Blog",
     "about": "About",
     "contact": "Contact",
     "login": "Login",
@@ -66,8 +67,14 @@
     "passwordPlaceholder": "Enter your password",
     "namePlaceholder": "Enter your name",
     "confirmPasswordPlaceholder": "Confirm your password",
+    "loginWithGoogle": "Continue with Google",
     "loginWithGithub": "Login with GitHub",
     "registerWithGithub": "Register with GitHub",
+    "googleLogin": {
+      "description": "Sign in securely with your Google account"
+    },
+
+    "bySigningIn": "By signing in, you agree to our",
     "rememberMe": "Remember me",
     "forgotPassword": "Forgot your password?",
     "orContinueWith": "Or continue with",
@@ -141,6 +148,21 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "cookies": "Cookie Policy"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Insights, tutorials, and updates from our team",
+    "description": "Read our latest blog posts about web development, technology, and best practices",
+    "keywords": "blog, articles, tutorials, web development",
+    "minRead": "min read",
+    "readMore": "Read More",
+    "allCategories": "All Categories",
+    "loadMore": "Load More Posts",
+    "backToBlog": "Back to Blog",
+    "shareArticle": "Share this article",
+    "relatedPosts": "Related Posts",
+    "postNotFound": "Post Not Found",
+    "postNotFoundDescription": "The blog post you're looking for doesn't exist."
   },
   "common": {
     "loading": "Loading...",
