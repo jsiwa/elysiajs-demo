@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>多语言测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .lang-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px; }
+        .success { background: #d4edda; border-color: #c3e6cb; }
+        .error { background: #f8d7da; border-color: #f5c6cb; }
+        .info { background: #d1ecf1; border-color: #bee5eb; }
+        button { padding: 8px 16px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px; }
+        .links { display: flex; gap: 10px; flex-wrap: wrap; }
+        .links a { padding: 8px 12px; background: #6c757d; color: white; text-decoration: none; border-radius: 4px; font-size: 12px; }
+        .links a:hover { background: #5a6268; }
+        h2 { color: #495057; border-bottom: 2px solid #dee2e6; padding-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🌍 多语言功能测试</h1>
+    
+    <div class="lang-section info">
+        <h2>🇺🇸 English (英语)</h2>
+        <div class="links">
+            <a href="/" target="_blank">Home</a>
+            <a href="/login" target="_blank">Login</a>
+            <a href="/admin" target="_blank">Admin Dashboard</a>
+            <a href="/admin/files" target="_blank">File Manager</a>
+            <a href="/products" target="_blank">Products</a>
+            <a href="/blog" target="_blank">Blog</a>
+        </div>
+        <button onclick="testLanguage('en', '')">测试英语路由</button>
+        <div id="enResult" class="result"></div>
+    </div>
+    
+    <div class="lang-section info">
+        <h2>🇨🇳 中文 (Chinese)</h2>
+        <div class="links">
+            <a href="/zh" target="_blank">首页</a>
+            <a href="/zh/login" target="_blank">登录</a>
+            <a href="/zh/admin" target="_blank">管理仪表板</a>
+            <a href="/zh/admin/files" target="_blank">文件管理器</a>
+            <a href="/zh/products" target="_blank">产品</a>
+            <a href="/zh/blog" target="_blank">博客</a>
+        </div>
+        <button onclick="testLanguage('zh', '/zh')">测试中文路由</button>
+        <div id="zhResult" class="result"></div>
+    </div>
+    
+    <div class="lang-section info">
+        <h2>🇯🇵 日本語 (Japanese)</h2>
+        <div class="links">
+            <a href="/ja" target="_blank">ホーム</a>
+            <a href="/ja/login" target="_blank">ログイン</a>
+            <a href="/ja/admin" target="_blank">管理ダッシュボード</a>
+            <a href="/ja/admin/files" target="_blank">ファイルマネージャー</a>
+            <a href="/ja/products" target="_blank">商品</a>
+            <a href="/ja/blog" target="_blank">ブログ</a>
+        </div>
+        <button onclick="testLanguage('ja', '/ja')">测试日语路由</button>
+        <div id="jaResult" class="result"></div>
+    </div>
+    
+    <div class="lang-section info">
+        <h2>🔐 认证测试</h2>
+        <button onclick="loginAndTestAdmin()">登录并测试管理后台</button>
+        <button onclick="testAllAdminRoutes()">测试所有管理路由</button>
+        <div id="authResult" class="result"></div>
+    </div>
+    
+    <div class="lang-section info">
+        <h2>📊 测试结果汇总</h2>
+        <button onclick="runAllTests()">运行所有测试</button>
+        <div id="summaryResult" class="result"></div>
+    </div>
+
+    <script>
+        async function testLanguage(lang, prefix) {
+            const resultId = lang + 'Result';
+            const result = document.getElementById(resultId);
+            result.innerHTML = `正在测试 ${lang} 语言路由...`;
+            
+            const routes = ['', '/admin', '/admin/files', '/products', '/blog'];
+            let results = [];
+            
+            for (const route of routes) {
+                const url = prefix + route || '/';
+                try {
+                    const response = await fetch(url, { credentials: 'include' });
+                    const status = response.status;
+                    const statusText = status === 200 ? '✅' : status === 302 ? '🔄' : '❌';
+                    results.push(`${url}: ${statusText} ${status}`);
+                } catch (error) {
+                    results.push(`${url}: ❌ 错误 - ${error.message}`);
+                }
+            }
+            
+            result.innerHTML = `${lang} 语言路由测试结果:<br>${results.join('<br>')}`;
+            
+            // 检查是否所有路由都可访问
+            const allOk = results.every(r => r.includes('✅') || r.includes('🔄'));
+            result.parentElement.className = allOk ? 'lang-section success' : 'lang-section error';
+        }
+        
+        async function loginAndTestAdmin() {
+            const result = document.getElementById('authResult');
+            result.innerHTML = '正在登录管理员账户...';
+            
+            try {
+                // 先登录
+                const loginResponse = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: 'admin@example.com',
+                        password: 'admin123'
+                    }),
+                    credentials: 'include'
+                });
+                
+                if (loginResponse.ok) {
+                    result.innerHTML = '✅ 登录成功，正在测试管理后台访问...';
+                    
+                    // 测试管理后台访问
+                    const adminRoutes = ['/admin', '/zh/admin', '/ja/admin'];
+                    let adminResults = [];
+                    
+                    for (const route of adminRoutes) {
+                        try {
+                            const response = await fetch(route, { credentials: 'include' });
+                            const status = response.status;
+                            const statusText = status === 200 ? '✅' : '❌';
+                            adminResults.push(`${route}: ${statusText} ${status}`);
+                        } catch (error) {
+                            adminResults.push(`${route}: ❌ 错误`);
+                        }
+                    }
+                    
+                    result.innerHTML = `✅ 登录成功<br>管理后台访问测试:<br>${adminResults.join('<br>')}`;
+                    result.parentElement.className = 'lang-section success';
+                } else {
+                    const errorData = await loginResponse.json();
+                    result.innerHTML = `❌ 登录失败: ${errorData.error}`;
+                    result.parentElement.className = 'lang-section error';
+                }
+            } catch (error) {
+                result.innerHTML = `❌ 网络错误: ${error.message}`;
+                result.parentElement.className = 'lang-section error';
+            }
+        }
+        
+        async function testAllAdminRoutes() {
+            const result = document.getElementById('authResult');
+            result.innerHTML += '<br><br>正在测试所有管理路由...';
+            
+            const adminRoutes = [
+                '/admin', '/zh/admin', '/ja/admin',
+                '/admin/files', '/zh/admin/files', '/ja/admin/files'
+            ];
+            
+            let results = [];
+            
+            for (const route of adminRoutes) {
+                try {
+                    const response = await fetch(route, { credentials: 'include' });
+                    const status = response.status;
+                    const statusText = status === 200 ? '✅' : status === 302 ? '🔄' : '❌';
+                    results.push(`${route}: ${statusText} ${status}`);
+                } catch (error) {
+                    results.push(`${route}: ❌ 错误`);
+                }
+            }
+            
+            result.innerHTML += `<br>所有管理路由测试结果:<br>${results.join('<br>')}`;
+        }
+        
+        async function runAllTests() {
+            const result = document.getElementById('summaryResult');
+            result.innerHTML = '正在运行所有测试...';
+            
+            // 依次运行所有测试
+            await testLanguage('en', '');
+            await testLanguage('zh', '/zh');
+            await testLanguage('ja', '/ja');
+            await loginAndTestAdmin();
+            
+            result.innerHTML = '✅ 所有测试完成！请查看上方各个部分的详细结果。';
+            result.parentElement.className = 'lang-section success';
+        }
+        
+        // 页面加载时显示说明
+        window.onload = () => {
+            document.getElementById('summaryResult').innerHTML = 
+                '点击"运行所有测试"按钮开始测试，或者单独测试各个语言的路由。<br>' +
+                '测试将验证：<br>' +
+                '• 各语言路由是否可访问<br>' +
+                '• 管理员登录功能<br>' +
+                '• 多语言管理后台访问<br>' +
+                '• 文件管理器多语言支持';
+        };
+    </script>
+</body>
+</html>

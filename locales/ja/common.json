@@ -56,6 +56,7 @@
     "login": "ログイン",
     "register": "登録",
     "profile": "プロフィール",
+    "admin": "管理",
     "logout": "ログアウト"
   },
   "auth": {
@@ -163,6 +164,72 @@
     "relatedPosts": "関連記事",
     "postNotFound": "記事が見つかりません",
     "postNotFoundDescription": "お探しのブログ記事は存在しません。"
+  },
+  "admin": {
+    "dashboard": {
+      "title": "管理ダッシュボード",
+      "subtitle": "アプリケーションとリソースを管理",
+      "description": "ファイルとシステムリソースを管理するための管理ダッシュボード",
+      "keywords": "管理, ダッシュボード, 管理, ファイル"
+    },
+    "stats": {
+      "totalFiles": "総ファイル数",
+      "storageUsed": "使用ストレージ",
+      "images": "画像",
+      "documents": "ドキュメント"
+    },
+    "actions": {
+      "fileManager": "ファイルマネージャー",
+      "fileManagerDesc": "Cloudflare R2ストレージでファイルをアップロード、整理、管理",
+      "openFileManager": "ファイルマネージャーを開く",
+      "quickUpload": "クイックアップロード",
+      "quickUploadDesc": "ストレージにファイルを素早くアップロード",
+      "uploadFiles": "ファイルをアップロード",
+      "analytics": "分析",
+      "analyticsDesc": "ストレージ使用量とファイル統計を表示",
+      "refreshStats": "統計を更新"
+    },
+    "fileManager": {
+      "title": "ファイルマネージャー",
+      "subtitle": "Cloudflare R2ストレージファイルを管理",
+      "description": "Cloudflare R2ストレージでファイルをアップロード、整理、管理",
+      "keywords": "ファイルマネージャー, ストレージ, アップロード, cloudflare r2",
+      "upload": "ファイルをアップロード",
+      "refresh": "更新",
+      "searchPlaceholder": "ファイルを検索...",
+      "allTypes": "すべてのタイプ",
+      "images": "画像",
+      "documents": "ドキュメント",
+      "videos": "動画",
+      "other": "その他",
+      "sortByName": "名前で並び替え",
+      "sortBySize": "サイズで並び替え",
+      "sortByDate": "日付で並び替え",
+      "fileName": "ファイル名",
+      "size": "サイズ",
+      "modified": "更新日",
+      "actions": "アクション",
+      "preview": "プレビュー",
+      "copyUrl": "URLをコピー",
+      "rename": "名前を変更",
+      "delete": "削除",
+      "noFiles": "ファイルが見つかりません",
+      "uploadFirst": "最初のファイルをアップロードして開始",
+      "previewNotAvailable": "このファイルタイプのプレビューは利用できません",
+      "openInNewTab": "新しいタブで開く",
+      "urlCopied": "URLがクリップボードにコピーされました！",
+      "confirmDelete": "本当に削除しますか",
+      "deleteFailed": "ファイルの削除に失敗しました",
+      "renameFile": "ファイル名を変更",
+      "newFileName": "新しいファイル名",
+      "renameFailed": "ファイル名の変更に失敗しました"
+    },
+    "upload": {
+      "title": "ファイルをアップロード",
+      "dragDrop": "ここにファイルをドラッグ＆ドロップ",
+      "orClickToSelect": "またはクリックしてファイルを選択",
+      "start": "アップロード開始"
+    }
   },
   "common": {
     "loading": "読み込み中...",

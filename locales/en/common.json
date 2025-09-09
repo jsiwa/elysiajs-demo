@@ -56,6 +56,7 @@
     "login": "Login",
     "register": "Register",
     "profile": "Profile",
+    "admin": "Admin",
     "logout": "Logout"
   },
   "auth": {
@@ -163,6 +164,72 @@
     "relatedPosts": "Related Posts",
     "postNotFound": "Post Not Found",
     "postNotFoundDescription": "The blog post you're looking for doesn't exist."
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "subtitle": "Manage your application and resources",
+      "description": "Administrative dashboard for managing files and system resources",
+      "keywords": "admin, dashboard, management, files"
+    },
+    "stats": {
+      "totalFiles": "Total Files",
+      "storageUsed": "Storage Used",
+      "images": "Images",
+      "documents": "Documents"
+    },
+    "actions": {
+      "fileManager": "File Manager",
+      "fileManagerDesc": "Upload, organize, and manage your files in Cloudflare R2 storage",
+      "openFileManager": "Open File Manager",
+      "quickUpload": "Quick Upload",
+      "quickUploadDesc": "Quickly upload files to your storage",
+      "uploadFiles": "Upload Files",
+      "analytics": "Analytics",
+      "analyticsDesc": "View storage usage and file statistics",
+      "refreshStats": "Refresh Stats"
+    },
+    "fileManager": {
+      "title": "File Manager",
+      "subtitle": "Manage your Cloudflare R2 storage files",
+      "description": "Upload, organize, and manage files in Cloudflare R2 storage",
+      "keywords": "file manager, storage, upload, cloudflare r2",
+      "upload": "Upload Files",
+      "refresh": "Refresh",
+      "searchPlaceholder": "Search files...",
+      "allTypes": "All Types",
+      "images": "Images",
+      "documents": "Documents",
+      "videos": "Videos",
+      "other": "Other",
+      "sortByName": "Sort by Name",
+      "sortBySize": "Sort by Size",
+      "sortByDate": "Sort by Date",
+      "fileName": "File Name",
+      "size": "Size",
+      "modified": "Modified",
+      "actions": "Actions",
+      "preview": "Preview",
+      "copyUrl": "Copy URL",
+      "rename": "Rename",
+      "delete": "Delete",
+      "noFiles": "No files found",
+      "uploadFirst": "Upload your first file to get started",
+      "previewNotAvailable": "Preview not available for this file type",
+      "openInNewTab": "Open in new tab",
+      "urlCopied": "URL copied to clipboard!",
+      "confirmDelete": "Are you sure you want to delete",
+      "deleteFailed": "Failed to delete file",
+      "renameFile": "Rename File",
+      "newFileName": "New file name",
+      "renameFailed": "Failed to rename file"
+    },
+    "upload": {
+      "title": "Upload Files",
+      "dragDrop": "Drag and drop files here",
+      "orClickToSelect": "or click to select files",
+      "start": "Start Upload"
+    }
   },
   "common": {
     "loading": "Loading...",

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>管理后台测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .step { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px; }
+        .success { background: #d4edda; border-color: #c3e6cb; }
+        .error { background: #f8d7da; border-color: #f5c6cb; }
+        .info { background: #d1ecf1; border-color: #bee5eb; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 4px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>🔧 管理后台功能测试</h1>
+    
+    <div class="step info">
+        <h3>步骤 1: 登录测试</h3>
+        <button onclick="testLogin()">测试管理员登录</button>
+        <div id="loginResult" class="result"></div>
+    </div>
+    
+    <div class="step info">
+        <h3>步骤 2: 会话验证</h3>
+        <button onclick="checkSession()">检查会话状态</button>
+        <div id="sessionResult" class="result"></div>
+    </div>
+    
+    <div class="step info">
+        <h3>步骤 3: 管理后台访问</h3>
+        <button onclick="testAdmin()">测试管理后台</button>
+        <button onclick="testAdminFiles()">测试文件管理器</button>
+        <div id="adminResult" class="result"></div>
+    </div>
+    
+    <div class="step info">
+        <h3>步骤 4: 多语言测试</h3>
+        <button onclick="testMultiLang()">测试多语言路由</button>
+        <div id="langResult" class="result"></div>
+    </div>
+    
+    <div class="step info">
+        <h3>快速链接</h3>
+        <a href="/login" target="_blank">登录页面</a> |
+        <a href="/admin" target="_blank">管理后台</a> |
+        <a href="/admin/files" target="_blank">文件管理器</a> |
+        <a href="/zh/admin" target="_blank">中文管理后台</a> |
+        <a href="/ja/admin" target="_blank">日文管理后台</a>
+    </div>
+
+    <script>
+        async function testLogin() {
+            const result = document.getElementById('loginResult');
+            result.innerHTML = '正在测试登录...';
+            
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: 'admin@example.com',
+                        password: 'admin123'
+                    }),
+                    credentials: 'include'
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    result.innerHTML = `✅ 登录成功: ${JSON.stringify(data, null, 2)}`;
+                    result.parentElement.className = 'step success';
+                } else {
+                    result.innerHTML = `❌ 登录失败: ${JSON.stringify(data, null, 2)}`;
+                    result.parentElement.className = 'step error';
+                }
+            } catch (error) {
+                result.innerHTML = `❌ 网络错误: ${error.message}`;
+                result.parentElement.className = 'step error';
+            }
+        }
+        
+        async function checkSession() {
+            const result = document.getElementById('sessionResult');
+            result.innerHTML = '正在检查会话...';
+            
+            try {
+                const response = await fetch('/api/auth/me', {
+                    credentials: 'include'
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    result.innerHTML = `✅ 会话有效: ${JSON.stringify(data, null, 2)}`;
+                    result.parentElement.className = 'step success';
+                } else {
+                    result.innerHTML = `❌ 会话无效: ${JSON.stringify(data, null, 2)}`;
+                    result.parentElement.className = 'step error';
+                }
+            } catch (error) {
+                result.innerHTML = `❌ 网络错误: ${error.message}`;
+                result.parentElement.className = 'step error';
+            }
+        }
+        
+        async function testAdmin() {
+            const result = document.getElementById('adminResult');
+            result.innerHTML = '正在测试管理后台访问...';
+            
+            try {
+                const response = await fetch('/admin', {
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    result.innerHTML = `✅ 管理后台访问成功 (状态: ${response.status})`;
+                    result.parentElement.className = 'step success';
+                } else if (response.status === 302 || response.status === 301) {
+                    result.innerHTML = `🔄 重定向到登录页面 (状态: ${response.status})`;
+                    result.parentElement.className = 'step info';
+                } else {
+                    result.innerHTML = `❌ 管理后台访问失败 (状态: ${response.status})`;
+                    result.parentElement.className = 'step error';
+                }
+            } catch (error) {
+                result.innerHTML = `❌ 网络错误: ${error.message}`;
+                result.parentElement.className = 'step error';
+            }
+        }
+        
+        async function testAdminFiles() {
+            const result = document.getElementById('adminResult');
+            result.innerHTML += '<br>正在测试文件管理器访问...';
+            
+            try {
+                const response = await fetch('/admin/files', {
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    result.innerHTML += `<br>✅ 文件管理器访问成功 (状态: ${response.status})`;
+                } else {
+                    result.innerHTML += `<br>❌ 文件管理器访问失败 (状态: ${response.status})`;
+                }
+            } catch (error) {
+                result.innerHTML += `<br>❌ 网络错误: ${error.message}`;
+            }
+        }
+        
+        async function testMultiLang() {
+            const result = document.getElementById('langResult');
+            result.innerHTML = '正在测试多语言路由...';
+            
+            const routes = ['/admin', '/zh/admin', '/ja/admin'];
+            let results = [];
+            
+            for (const route of routes) {
+                try {
+                    const response = await fetch(route, {
+                        credentials: 'include'
+                    });
+                    results.push(`${route}: ${response.status}`);
+                } catch (error) {
+                    results.push(`${route}: 错误 - ${error.message}`);
+                }
+            }
+            
+            result.innerHTML = `多语言路由测试结果:<br>${results.join('<br>')}`;
+            result.parentElement.className = 'step success';
+        }
+        
+        // 页面加载时自动检查会话
+        window.onload = () => {
+            checkSession();
+        };
+    </script>
+</body>
+</html>

@@ -56,6 +56,7 @@
     "login": "登录",
     "register": "注册",
     "profile": "个人资料",
+    "admin": "管理",
     "logout": "退出"
   },
   "auth": {
@@ -73,7 +74,6 @@
     "googleLogin": {
       "description": "使用您的 Google 账户安全登录"
     },
-
     "bySigningIn": "登录即表示您同意我们的",
     "rememberMe": "记住我",
     "forgotPassword": "忘记密码？",
@@ -163,6 +163,72 @@
     "relatedPosts": "相关文章",
     "postNotFound": "文章未找到",
     "postNotFoundDescription": "您要查找的博客文章不存在。"
+  },
+  "admin": {
+    "dashboard": {
+      "title": "管理仪表板",
+      "subtitle": "管理您的应用程序和资源",
+      "description": "用于管理文件和系统资源的管理仪表板",
+      "keywords": "管理, 仪表板, 管理, 文件"
+    },
+    "stats": {
+      "totalFiles": "总文件数",
+      "storageUsed": "已使用存储",
+      "images": "图片",
+      "documents": "文档"
+    },
+    "actions": {
+      "fileManager": "文件管理器",
+      "fileManagerDesc": "在 Cloudflare R2 存储中上传、整理和管理您的文件",
+      "openFileManager": "打开文件管理器",
+      "quickUpload": "快速上传",
+      "quickUploadDesc": "快速上传文件到您的存储",
+      "uploadFiles": "上传文件",
+      "analytics": "分析",
+      "analyticsDesc": "查看存储使用情况和文件统计",
+      "refreshStats": "刷新统计"
+    },
+    "fileManager": {
+      "title": "文件管理器",
+      "subtitle": "管理您的 Cloudflare R2 存储文件",
+      "description": "在 Cloudflare R2 存储中上传、整理和管理文件",
+      "keywords": "文件管理器, 存储, 上传, cloudflare r2",
+      "upload": "上传文件",
+      "refresh": "刷新",
+      "searchPlaceholder": "搜索文件...",
+      "allTypes": "所有类型",
+      "images": "图片",
+      "documents": "文档",
+      "videos": "视频",
+      "other": "其他",
+      "sortByName": "按名称排序",
+      "sortBySize": "按大小排序",
+      "sortByDate": "按日期排序",
+      "fileName": "文件名",
+      "size": "大小",
+      "modified": "修改时间",
+      "actions": "操作",
+      "preview": "预览",
+      "copyUrl": "复制链接",
+      "rename": "重命名",
+      "delete": "删除",
+      "noFiles": "未找到文件",
+      "uploadFirst": "上传您的第一个文件开始使用",
+      "previewNotAvailable": "此文件类型无法预览",
+      "openInNewTab": "在新标签页中打开",
+      "urlCopied": "链接已复制到剪贴板！",
+      "confirmDelete": "您确定要删除",
+      "deleteFailed": "删除文件失败",
+      "renameFile": "重命名文件",
+      "newFileName": "新文件名",
+      "renameFailed": "重命名文件失败"
+    },
+    "upload": {
+      "title": "上传文件",
+      "dragDrop": "将文件拖放到此处",
+      "orClickToSelect": "或点击选择文件",
+      "start": "开始上传"
+    }
   },
   "common": {
     "loading": "加载中...",
