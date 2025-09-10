@@ -1,5 +1,6 @@
 import { MainLayout } from '../../layouts/MainLayout'
 import { generateSEOTags } from '../../lib/seo'
+import { createPathUtils } from '../../lib/path-utils'
 import type { SupportedLanguage } from '../../lib/i18n'
 import type { User } from '../../lib/auth'
 
@@ -19,20 +20,8 @@ export function HomePage({ lang, t, user, currentPath }: HomePageProps): string 
     ogDescription: t('home.description')
   }, lang)
 
-  // Generate correct links based on language
-  let productsLink = '/products'
-  let loginLink = '/login'
-  let registerLink = '/register'
-  
-  if (lang === 'ja') {
-    productsLink = '/ja/products'
-    loginLink = '/ja/login'
-    registerLink = '/ja/register'
-  } else if (lang === 'zh') {
-    productsLink = '/zh/products'
-    loginLink = '/zh/login'
-    registerLink = '/zh/register'
-  }
+  // 创建路径工具
+  const path = createPathUtils(lang)
 
   const content = `
     <!-- Hero Section -->
@@ -54,14 +43,14 @@ export function HomePage({ lang, t, user, currentPath }: HomePageProps): string 
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a 
-              href="${productsLink}" 
+              href="${path.to('/products')}" 
               class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               ${t('home.viewProducts')}
             </a>
             ${!user ? `
               <a 
-                href="${registerLink}" 
+                href="${path.to('/register')}" 
                 class="border-2 border-gray-300 hover:border-blue-500 text-gray-700 hover:text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 hover:bg-blue-50"
               >
                 ${t('home.getStarted')}
@@ -162,13 +151,13 @@ export function HomePage({ lang, t, user, currentPath }: HomePageProps): string 
         ${!user ? `
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="${registerLink}" 
+              href="${path.to('/register')}" 
               class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               ${t('home.cta.getStarted')}
             </a>
             <a 
-              href="${loginLink}" 
+              href="${path.to('/login')}" 
               class="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200"
             >
               ${t('home.cta.signIn')}
@@ -176,7 +165,7 @@ export function HomePage({ lang, t, user, currentPath }: HomePageProps): string 
           </div>
         ` : `
           <a 
-            href="${productsLink}" 
+            href="${path.to('/products')}" 
             class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl inline-block"
           >
             ${t('home.viewProducts')}

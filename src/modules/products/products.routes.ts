@@ -1,23 +1,12 @@
 import { Elysia } from 'elysia'
 import { ProductsPage } from './products.views'
-import { createTranslator } from '../../lib/translate'
+import { createI18nRoutes } from '../../lib/i18n-routes'
 
-export const productsRoutes = new Elysia({ prefix: '' })
-  .get('/products', ({ request }) => {
-    const lang = 'en'
-    const t = createTranslator(lang)
-    const currentPath = new URL(request.url).pathname
-    return ProductsPage({ lang, t, currentPath })
-  })
-  .get('/ja/products', ({ request }) => {
-    const lang = 'ja'
-    const t = createTranslator(lang)
-    const currentPath = new URL(request.url).pathname
-    return ProductsPage({ lang, t, currentPath })
-  })
-  .get('/zh/products', ({ request }) => {
-    const lang = 'zh'
-    const t = createTranslator(lang)
-    const currentPath = new URL(request.url).pathname
-    return ProductsPage({ lang, t, currentPath })
-  })
+export const productsRoutes = createI18nRoutes(new Elysia({ prefix: '' }), [
+  {
+    path: '/products',
+    handler: ({ lang, t, currentPath }) => {
+      return ProductsPage({ lang, t, currentPath })
+    }
+  }
+])

@@ -1,5 +1,6 @@
 import type { SupportedLanguage } from '../lib/i18n'
 import type { User } from '../lib/auth'
+import { createPathUtils, getLanguageSwitchPaths } from '../lib/path-utils'
 
 interface HeaderProps {
   lang: SupportedLanguage
@@ -9,51 +10,11 @@ interface HeaderProps {
 }
 
 export function Header({ lang, user, t, currentPath = '' }: HeaderProps): string {
-  // Generate correct navigation links based on language
-  let homeLink = '/'
-  let productsLink = '/products'
-  let blogLink = '/blog'
-  let adminLink = '/admin'
-  let loginLink = '/login'
-  let registerLink = '/register'
-  let profileLink = '/profile'
+  // 创建路径工具
+  const path = createPathUtils(lang)
   
-  if (lang === 'ja') {
-    homeLink = '/ja'
-    productsLink = '/ja/products'
-    blogLink = '/ja/blog'
-    adminLink = '/ja/admin'
-    loginLink = '/ja/login'
-    registerLink = '/ja/register'
-    profileLink = '/ja/profile'
-  } else if (lang === 'zh') {
-    homeLink = '/zh'
-    productsLink = '/zh/products'
-    blogLink = '/zh/blog'
-    adminLink = '/zh/admin'
-    loginLink = '/zh/login'
-    registerLink = '/zh/register'
-    profileLink = '/zh/profile'
-  }
-
-  // Language switching links - preserve current path
-  function generateLanguageLinks(currentPath: string) {
-    // Remove language prefix from current path
-    const pathWithoutLang = currentPath.replace(/^\/(ja|zh)/, '') || '/'
-    
-    // Generate links for each language
-    const enLink = pathWithoutLang === '/' ? '/' : pathWithoutLang
-    const jaLink = pathWithoutLang === '/' ? '/ja' : `/ja${pathWithoutLang}`
-    const zhLink = pathWithoutLang === '/' ? '/zh' : `/zh${pathWithoutLang}`
-    
-    return {
-      en: enLink,
-      ja: jaLink,
-      zh: zhLink
-    }
-  }
-  
-  const languageLinks = generateLanguageLinks(currentPath)
+  // 生成语言切换链接
+  const languageLinks = getLanguageSwitchPaths(currentPath)
   
   const languages = [
     { code: 'en', name: 'English', flag: '🇺🇸', link: languageLinks.en },
@@ -68,7 +29,7 @@ export function Header({ lang, user, t, currentPath = '' }: HeaderProps): string
           <!-- Logo and main navigation -->
           <div class="flex">
             <div class="flex-shrink-0 flex items-center">
-              <a href="${homeLink}" class="flex items-center space-x-2">
+              <a href="${path.to('/')}" class="flex items-center space-x-2">
                 <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                   <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -78,13 +39,13 @@ export function Header({ lang, user, t, currentPath = '' }: HeaderProps): string
               </a>
             </div>
             <div class="hidden sm:ml-8 sm:flex sm:space-x-8 items-center">
-              <a href="${homeLink}" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 ${currentPath === homeLink ? 'border-blue-600 text-blue-600' : 'border-transparent'}">
+              <a href="${path.to('/')}" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 ${path.matches(currentPath, '/') ? 'border-blue-600 text-blue-600' : 'border-transparent'}">
                 ${t ? t('navigation.home') : 'Home'}
               </a>
-              <a href="${productsLink}" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 ${currentPath.includes('/products') ? 'border-blue-600 text-blue-600' : 'border-transparent'}">
+              <a href="${path.to('/products')}" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 ${path.startsWith(currentPath, '/products') ? 'border-blue-600 text-blue-600' : 'border-transparent'}">
                 ${t ? t('navigation.products') : 'Products'}
               </a>
-              <a href="${blogLink}" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 ${currentPath.includes('/blog') ? 'border-blue-600 text-blue-600' : 'border-transparent'}">
+              <a href="${path.to('/blog')}" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 ${path.startsWith(currentPath, '/blog') ? 'border-blue-600 text-blue-600' : 'border-transparent'}">
                 ${t ? t('navigation.blog') : 'Blog'}
               </a>
               <a href="#" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 border-transparent">
@@ -132,7 +93,7 @@ export function Header({ lang, user, t, currentPath = '' }: HeaderProps): string
                     </svg>
                   </button>
                   <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
-                    <a href="${profileLink}" class="flex items-center space-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">
+                    <a href="${path.to('/profile')}" class="flex items-center space-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                       </svg>
@@ -140,7 +101,7 @@ export function Header({ lang, user, t, currentPath = '' }: HeaderProps): string
                     </a>
                     ${user && (user.role === 'admin' || user.email === 'admin@example.com') ? `
                       <div class="border-t border-gray-200 my-1"></div>
-                      <a href="${adminLink}" class="flex items-center space-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">
+                      <a href="${path.to('/admin')}" class="flex items-center space-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -160,10 +121,10 @@ export function Header({ lang, user, t, currentPath = '' }: HeaderProps): string
               </div>
             ` : `
               <div class="flex items-center space-x-3">
-                <a href="${loginLink}" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">
+                <a href="${path.to('/login')}" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200">
                   ${t ? t('navigation.login') : 'Login'}
                 </a>
-                <a href="${registerLink}" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg">
+                <a href="${path.to('/register')}" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg">
                   ${t ? t('navigation.register') : 'Register'}
                 </a>
               </div>
@@ -183,13 +144,13 @@ export function Header({ lang, user, t, currentPath = '' }: HeaderProps): string
         <!-- Mobile menu -->
         <div id="mobileMenu" class="hidden sm:hidden">
           <div class="pt-2 pb-3 space-y-1 border-t border-gray-200">
-            <a href="${homeLink}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 rounded-lg">
+            <a href="${path.to('/')}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 rounded-lg">
               ${t ? t('navigation.home') : 'Home'}
             </a>
-            <a href="${productsLink}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 rounded-lg">
+            <a href="${path.to('/products')}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 rounded-lg">
               ${t ? t('navigation.products') : 'Products'}
             </a>
-            <a href="${blogLink}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 rounded-lg">
+            <a href="${path.to('/blog')}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 rounded-lg">
               ${t ? t('navigation.blog') : 'Blog'}
             </a>
             <a href="#" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 rounded-lg">
@@ -200,10 +161,10 @@ export function Header({ lang, user, t, currentPath = '' }: HeaderProps): string
             </a>
             ${!user ? `
               <div class="border-t border-gray-200 pt-3 mt-3">
-                <a href="${loginLink}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 rounded-lg">
+                <a href="${path.to('/login')}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 rounded-lg">
                   ${t ? t('navigation.login') : 'Login'}
                 </a>
-                <a href="${registerLink}" class="block px-3 py-2 text-base font-medium text-blue-600 hover:bg-blue-50 transition-colors duration-200 rounded-lg">
+                <a href="${path.to('/register')}" class="block px-3 py-2 text-base font-medium text-blue-600 hover:bg-blue-50 transition-colors duration-200 rounded-lg">
                   ${t ? t('navigation.register') : 'Register'}
                 </a>
               </div>
@@ -261,7 +222,7 @@ export function Header({ lang, user, t, currentPath = '' }: HeaderProps): string
             credentials: 'include' 
           });
           if (response.ok) {
-            window.location.href = '${homeLink}';
+            window.location.href = '${path.to('/')}';
           }
         } catch (error) {
           console.error('Logout error:', error);

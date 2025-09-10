@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>灵活路径系统演示</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .section { margin: 30px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .before { background: #fff5f5; border-left: 4px solid #f56565; }
+        .after { background: #f0fff4; border-left: 4px solid #48bb78; }
+        .code { background: #f7fafc; padding: 15px; border-radius: 4px; font-family: monospace; font-size: 12px; overflow-x: auto; }
+        .highlight { background: #fef5e7; padding: 2px 4px; border-radius: 2px; }
+        h2 { color: #2d3748; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        h3 { color: #4a5568; }
+        .benefits { background: #ebf8ff; padding: 15px; border-radius: 8px; }
+        .benefits ul { margin: 0; }
+        .benefits li { margin: 5px 0; }
+        .demo-section { background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .demo-section h4 { margin: 0 0 10px 0; }
+        .result { background: #e9ecef; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 12px; margin: 5px 0; }
+        .interactive { background: #fff3cd; padding: 15px; border-radius: 8px; border: 1px solid #ffeaa7; }
+        .input-group { margin: 10px 0; }
+        .input-group label { display: inline-block; width: 100px; font-weight: bold; }
+        .input-group input, .input-group select { padding: 5px; border: 1px solid #ddd; border-radius: 4px; }
+        button { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>🛤️ 灵活路径系统演示</h1>
+    
+    <div class="section">
+        <h2>📊 进化历程</h2>
+        <div class="before-after">
+            <div class="before">
+                <h3>❌ 第一版：硬编码链接</h3>
+                <div class="code">
+let productsLink = '/products'
+let loginLink = '/login'
+
+if (lang === 'ja') {
+  productsLink = '/ja/products'
+  loginLink = '/ja/login'
+} else if (lang === 'zh') {
+  productsLink = '/zh/products'
+  loginLink = '/zh/login'
+}
+
+&lt;a href="${productsLink}"&gt;Products&lt;/a&gt;
+                </div>
+                <p><strong>问题：</strong>重复代码，难以维护</p>
+            </div>
+            
+            <div class="after">
+                <h3>✅ 最终版：直接传路径</h3>
+                <div class="code">
+import { createPathUtils } from '../lib/path-utils'
+
+const path = createPathUtils(lang)
+
+// 直接传入任何路径，自动处理多语言
+&lt;a href="${path.to('/products')}"&gt;Products&lt;/a&gt;
+&lt;a href="${path.to('/blog/hello-world')}"&gt;Blog Post&lt;/a&gt;
+&lt;a href="${path.to('/user/123/settings')}"&gt;User Settings&lt;/a&gt;
+                </div>
+                <p><strong>优势：</strong>极简API，无限灵活</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🚀 核心功能演示</h2>
+        
+        <div class="demo-section">
+            <h4>1. 基础路径转换</h4>
+            <div class="code">
+const path = createPathUtils('zh')
+
+path.to('/')              // → '/zh'
+path.to('/products')      // → '/zh/products'
+path.to('/blog/hello')    // → '/zh/blog/hello'
+path.to('/user/123')      // → '/zh/user/123'
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h4>2. 带查询参数的路径</h4>
+            <div class="code">
+path.toWithQuery('/products', { category: 'electronics', page: '2' })
+// → '/zh/products?category=electronics&page=2'
+
+path.toWithQuery('/search', { q: 'hello world', type: 'post' })
+// → '/zh/search?q=hello+world&type=post'
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h4>3. 带锚点的路径</h4>
+            <div class="code">
+path.toWithHash('/docs', 'installation')
+// → '/zh/docs#installation'
+
+path.toWithHash('/blog/post-1', 'comments')
+// → '/zh/blog/post-1#comments'
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h4>4. 路径匹配和检查</h4>
+            <div class="code">
+path.matches('/zh/products', '/products')        // → true
+path.startsWith('/zh/blog/hello', '/blog')       // → true
+path.matches('/zh/admin', '/products')           // → false
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🧪 交互式演示</h2>
+        <div class="interactive">
+            <h3>试试看！输入任意路径，看看不同语言的结果：</h3>
+            
+            <div class="input-group">
+                <label>路径:</label>
+                <input type="text" id="pathInput" value="/products" placeholder="输入路径，如 /products, /blog/hello">
+            </div>
+            
+            <div class="input-group">
+                <label>语言:</label>
+                <select id="langSelect">
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日本語</option>
+                </select>
+            </div>
+            
+            <button onclick="generatePath()">生成路径</button>
+            <button onclick="generateAllPaths()">生成所有语言</button>
+            
+            <div id="pathResult" class="result" style="display: none;"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🔧 高级功能</h2>
+        
+        <h3>1. URL 构建器 - 链式调用</h3>
+        <div class="code">
+import { createURL } from '../lib/path-utils'
+
+const url = createURL('zh', '/products')
+  .query('category', 'electronics')
+  .query('page', '2')
+  .hash('reviews')
+  .build()
+// → '/zh/products?category=electronics&page=2#reviews'
+        </div>
+
+        <h3>2. 路径模板 - 参数替换</h3>
+        <div class="code">
+import { pathTemplate } from '../lib/path-utils'
+
+pathTemplate('/user/:id/posts/:postId', 
+  { id: '123', postId: 'hello-world' }, 
+  'zh'
+)
+// → '/zh/user/123/posts/hello-world'
+        </div>
+
+        <h3>3. 批量路径处理</h3>
+        <div class="code">
+import { localizePaths, getAllLanguagePaths } from '../lib/path-utils'
+
+// 批量本地化
+localizePaths(['/home', '/about', '/contact'], 'zh')
+// → ['/zh/home', '/zh/about', '/zh/contact']
+
+// 生成所有语言版本
+getAllLanguagePaths('/products')
+// → { en: '/products', ja: '/ja/products', zh: '/zh/products' }
+        </div>
+
+        <h3>4. 路径验证和标准化</h3>
+        <div class="code">
+import { PathValidator } from '../lib/path-utils'
+
+PathValidator.isValidPath('/products')           // → true
+PathValidator.isAbsolutePath('/products')        // → true
+PathValidator.isExternalLink('https://...')      // → true
+PathValidator.normalizePath('//products///')     // → '/products'
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🌐 实际应用示例</h2>
+        
+        <h3>在组件中使用</h3>
+        <div class="code">
+// Header.tsx
+import { createPathUtils } from '../lib/path-utils'
+
+export function Header({ lang }) {
+  const path = createPathUtils(lang)
+  
+  return `
+    &lt;nav&gt;
+      &lt;a href="${path.to('/')}"&gt;Home&lt;/a&gt;
+      &lt;a href="${path.to('/products')}"&gt;Products&lt;/a&gt;
+      &lt;a href="${path.to('/blog')}"&gt;Blog&lt;/a&gt;
+      &lt;a href="${path.to('/about')}"&gt;About&lt;/a&gt;
+    &lt;/nav&gt;
+  `
+}
+        </div>
+
+        <h3>动态路径生成</h3>
+        <div class="code">
+// BlogPost.tsx
+function BlogPost({ lang, slug, category }) {
+  const path = createPathUtils(lang)
+  
+  return `
+    &lt;article&gt;
+      &lt;a href="${path.to('/blog')}"&gt;← Back to Blog&lt;/a&gt;
+      &lt;a href="${path.to(`/blog/category/${category}`)}"&gt;More in ${category}&lt;/a&gt;
+      &lt;a href="${path.toWithHash(`/blog/${slug}`, 'comments')}"&gt;Comments&lt;/a&gt;
+    &lt;/article&gt;
+  `
+}
+        </div>
+
+        <h3>表单和搜索</h3>
+        <div class="code">
+// SearchForm.tsx
+function SearchForm({ lang, query, filters }) {
+  const path = createPathUtils(lang)
+  
+  const searchUrl = path.toWithQuery('/search', {
+    q: query,
+    category: filters.category,
+    sort: filters.sort
+  })
+  
+  return `&lt;form action="${searchUrl}"&gt;...&lt;/form&gt;`
+}
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📈 性能和优势</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr style="background: #f7fafc;">
+                <th style="padding: 10px; border: 1px solid #e2e8f0;">特性</th>
+                <th style="padding: 10px; border: 1px solid #e2e8f0;">硬编码方式</th>
+                <th style="padding: 10px; border: 1px solid #e2e8f0;">路径工具</th>
+                <th style="padding: 10px; border: 1px solid #e2e8f0;">改进</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #e2e8f0;">代码量</td>
+                <td style="padding: 10px; border: 1px solid #e2e8f0;">~15行/组件</td>
+                <td style="padding: 10px; border: 1px solid #e2e8f0;">~2行/组件</td>
+                <td style="padding: 10px; border: 1px solid #e2e8f0; color: #38a169;">-87%</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #e2e8f0;">灵活性</td>
+                <td style="padding: 10px; border: 1px solid #e2e8f0;">预定义路由</td>
+                <td style="padding: 10px; border: 1px solid #e2e8f0;">任意路径</td>
+                <td style="padding: 10px; border: 1px solid #e2e8f0; color: #38a169;">无限制</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #e2e8f0;">维护成本</td>
+                <td style="padding: 10px; border: 1px solid #e2e8f0;">高</td>
+                <td style="padding: 10px; border: 1px solid #e2e8f0;">极低</td>
+                <td style="padding: 10px; border: 1px solid #e2e8f0; color: #38a169;">显著降低</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #e2e8f0;">学习成本</td>
+                <td style="padding: 10px; border: 1px solid #e2e8f0;">需要记忆API</td>
+                <td style="padding: 10px; border: 1px solid #e2e8f0;">直观易懂</td>
+                <td style="padding: 10px; border: 1px solid #e2e8f0; color: #38a169;">几乎为零</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>🎯 总结</h2>
+        <div class="benefits">
+            <p>新的灵活路径系统实现了完美的平衡：</p>
+            <ul>
+                <li><strong>🎯 极简API</strong>：只需要 <code>path.to('/any/path')</code></li>
+                <li><strong>🚀 无限灵活</strong>：支持任意路径，不需要预定义</li>
+                <li><strong>🔧 功能丰富</strong>：查询参数、锚点、验证、模板等</li>
+                <li><strong>📱 自动适配</strong>：完美的多语言支持</li>
+                <li><strong>🎨 链式调用</strong>：优雅的 URL 构建器</li>
+                <li><strong>⚡ 高性能</strong>：轻量级，无额外开销</li>
+                <li><strong>🛡️ 类型安全</strong>：完整的 TypeScript 支持</li>
+            </ul>
+            <p><strong>🎉 这是一个真正"开箱即用"的路径管理解决方案！</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // 模拟路径工具函数
+        function getLocalizedPath(path, lang) {
+            if (!path.startsWith('/')) path = '/' + path;
+            if (lang === 'en') return path;
+            return `/${lang}${path}`;
+        }
+
+        function generatePath() {
+            const path = document.getElementById('pathInput').value;
+            const lang = document.getElementById('langSelect').value;
+            const result = getLocalizedPath(path, lang);
+            
+            document.getElementById('pathResult').style.display = 'block';
+            document.getElementById('pathResult').innerHTML = `
+                <strong>结果:</strong> ${result}<br>
+                <small>语言: ${lang}, 输入: ${path}</small>
+            `;
+        }
+
+        function generateAllPaths() {
+            const path = document.getElementById('pathInput').value;
+            const languages = ['en', 'ja', 'zh'];
+            const results = languages.map(lang => 
+                `${lang}: ${getLocalizedPath(path, lang)}`
+            ).join('<br>');
+            
+            document.getElementById('pathResult').style.display = 'block';
+            document.getElementById('pathResult').innerHTML = `
+                <strong>所有语言版本:</strong><br>
+                ${results}<br>
+                <small>输入路径: ${path}</small>
+            `;
+        }
+
+        // 添加回车键支持
+        document.getElementById('pathInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                generatePath();
+            }
+        });
+
+        // 页面加载时生成示例
+        window.onload = function() {
+            generateAllPaths();
+        };
+    </script>
+</body>
+</html>

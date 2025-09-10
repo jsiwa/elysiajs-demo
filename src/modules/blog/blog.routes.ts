@@ -1,44 +1,18 @@
 import { Elysia } from 'elysia'
 import { BlogListPage, BlogPostPage } from './blog.views'
-import { createTranslator } from '../../lib/translate'
+import { createI18nRoutes } from '../../lib/i18n-routes'
 
-export const blogRoutes = new Elysia({ prefix: '' })
-  // Blog list routes
-  .get('/blog', ({ request }) => {
-    const lang = 'en'
-    const t = createTranslator(lang)
-    const currentPath = new URL(request.url).pathname
-    return BlogListPage({ lang, t, currentPath })
-  })
-  .get('/ja/blog', ({ request }) => {
-    const lang = 'ja'
-    const t = createTranslator(lang)
-    const currentPath = new URL(request.url).pathname
-    return BlogListPage({ lang, t, currentPath })
-  })
-  .get('/zh/blog', ({ request }) => {
-    const lang = 'zh'
-    const t = createTranslator(lang)
-    const currentPath = new URL(request.url).pathname
-    return BlogListPage({ lang, t, currentPath })
-  })
-  
-  // Blog post routes
-  .get('/blog/:slug', ({ params, request }) => {
-    const lang = 'en'
-    const t = createTranslator(lang)
-    const currentPath = new URL(request.url).pathname
-    return BlogPostPage({ lang, t, slug: params.slug, currentPath })
-  })
-  .get('/ja/blog/:slug', ({ params, request }) => {
-    const lang = 'ja'
-    const t = createTranslator(lang)
-    const currentPath = new URL(request.url).pathname
-    return BlogPostPage({ lang, t, slug: params.slug, currentPath })
-  })
-  .get('/zh/blog/:slug', ({ params, request }) => {
-    const lang = 'zh'
-    const t = createTranslator(lang)
-    const currentPath = new URL(request.url).pathname
-    return BlogPostPage({ lang, t, slug: params.slug, currentPath })
-  })
+export const blogRoutes = createI18nRoutes(new Elysia({ prefix: '' }), [
+  {
+    path: '/blog',
+    handler: ({ lang, t, currentPath }) => {
+      return BlogListPage({ lang, t, currentPath })
+    }
+  },
+  {
+    path: '/blog/:slug',
+    handler: ({ lang, t, currentPath, params }) => {
+      return BlogPostPage({ lang, t, slug: params.slug, currentPath })
+    }
+  }
+])
